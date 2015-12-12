@@ -1,14 +1,53 @@
 <?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : peopleList
+    Created on : 12.12.2015
+    Author     : Matthieu Deillon
+-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
     <h:head>
-        <title><h:outputText value="" /></title>
+        <title><h:outputText value="#{msg.person.list.title}" /></title>
     </h:head>
-    
-    <body>
-        <div>TODO write content</div>
-    </body>
+
+    <h:body>
+        <div></div>
+        <div class="contenu">
+            <h2>
+                <h:outputText value="#{msg.customers.list.title}"/>
+            </h2>
+            
+            <h:dataTable id="dtPeople" var="person" value="#{peopleBean.people}">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg.person.number}"/>
+                    </f:facet>
+                    <h:commandLink id="cmdLnkViewPersonNumber" value="#{person.id}" action="#{peopleDetailsBean.showPeople(pers)}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg.person.lastName}"/>
+                    </f:facet>
+                    <h:outputText id="opTxtPersonName" value="#{person.firstName}"
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg.person.firstName}"/>
+                    </f:facet>
+                    <h:outputText id="opTxtPersonFN" value="#{person.lastName}"/>
+                </h:column>
+            </h:dataTable>
+            
+            <br/>
+            
+            <h:commandButton id="cmdBtnAddPerson" value="#{msg.button.label.add}" action="createPerson"/>
+        </div>
+        <div class="footer">
+            <h:outputText value="#{msg.footer}"/>
+        </div>        
+    </h:body>
 </html>

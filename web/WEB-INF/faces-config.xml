@@ -16,5 +16,31 @@
             <var>msg</var>
         </resource-bundle>
     </application>
-        
+     
+    
+    <navigation-rule>
+        <from-view-id>*.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>peopleList</from-outcome>
+            <to-view-id>/peopleList.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/peopleList.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>createPerson</from-outcome>
+            <to-view-id>/createPerson.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{peopleDetailsBean.showCustomer(customer)}</from-action>          
+            <from-outcome>show</from-outcome>
+            <to-view-id>/personDetails.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{peopleDetailsBean.showCustomer(customer)}</from-action>          
+            <from-outcome>error</from-outcome>
+            <to-view-id>/peopleList.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>                        
 </faces-config>

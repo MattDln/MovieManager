@@ -58,7 +58,6 @@ public class Person implements Serializable {
     }
 
     //Getter et Assesseur
-
     public Long getId() {
         return id;
     }
@@ -81,6 +80,14 @@ public class Person implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Map<Long, Movie> getMovies() {
+        return moviesWatch;
+    }
+
+    public void setMovies(Map<Long, Movie> movies) {
+        this.moviesWatch = movies;
     }
 
 }
