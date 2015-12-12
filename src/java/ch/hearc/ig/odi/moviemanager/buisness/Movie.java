@@ -5,6 +5,7 @@
  */
 package ch.hearc.ig.odi.moviemanager.buisness;
 
+import ch.hearc.ig.odi.moviemanager.exception.UniqueException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,13 +15,13 @@ import java.util.Map;
  * @author DeillonM
  */
 public class Movie {
+
     private Long id;
     private String name;
     private String producer;
     private Map<Long, Person> watchers;
-    
-    //Constructeur par defaut
 
+    //Constructeur par defaut
     public Movie() {
     }
 
@@ -28,10 +29,26 @@ public class Movie {
         this.id = id;
         this.name = name;
         this.producer = producer;
-        this.watchers=new LinkedHashMap<>();
+        this.watchers = new LinkedHashMap<>();
     }
-    
+
+    /**
+     * Ajoute une personne à la liste des personnes.
+     *
+     * @param person La personne à ajouter
+     * @return Le film auquel la personne à été ajouté.
+     */
+    public Movie addPerson(Person person) throws UniqueException {
+        if (!watchers.containsKey(person.getId())) {
+            this.watchers.put(person.getId(), person);
+        } else {
+            throw new UniqueException("A person with this ID already exist.");
+        }
+        return this;
+    }
+
     //Getter et Assesseur
+
     public Long getId() {
         return id;
     }
@@ -55,5 +72,5 @@ public class Movie {
     public void setProducer(String producer) {
         this.producer = producer;
     }
-    
+
 }
