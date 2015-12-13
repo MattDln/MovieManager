@@ -4,50 +4,52 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>#{msg.person.details.title}</title>
+        <title>#{msg['person.details.title']}</title>
     </h:head>
     <h:body>
         <h2>
-            <h:outputText value="#{msg.person.details.title}"/>
+            <h:outputText value="#{msg['person.details.title']}"/>
         </h2>
-        
+
         <h:panelGrid border="0" columns="2">
-            <h:outputLabel value="#{msg.person.number} :"/>
+            <h:outputLabel value="#{msg['person.number']} :"/>
             <h:outputText value="#{peopleDetailsBean.person.id}"/>
-            <h:outputLabel value="#{msg.person.lastName} :"/>
+            <h:outputLabel value="#{msg['person.lastName']} :"/>
             <h:outputText value="#{peopleDetailsBean.person.lastName}"/>
-            <h:outputLabel value="#{msg.person.firstName} :"/>
+            <h:outputLabel value="#{msg['person.firstName']} :"/>
             <h:outputText value="#{peopleDetailsBean.person.firstName}"/>
         </h:panelGrid>
-        
+
         <h3>
-            <h:outputText value="#{msg.person.details.movies.title}"/>
+            <h:outputText value="#{msg['person.details.movies.title']}"/>
         </h3>
-        
+
         <h:form id="moviesListForm">
             <h:dataTable id="dtMovies" var="movie" value="#{peopleDetailsBean.movies}">
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="#{msg.movie.number}"/>
+                        <h:outputText value="#{msg['movie.number']}"/>
                     </f:facet>
-                    <h:commandLink id="cmdLnkViewMovieNumber" value="#{movie.id}" action=""/>
+                    <h:commandLink id="cmdLnkViewMovieNumber" value="#{movie.id}" action="..."/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="#{msg.movie.name}"/>
+                        <h:outputText value="#{msg['movie.name']}"/>
                     </f:facet>
                     <h:outputText id="opTxtMovieName" value="#{movie.name}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="#{msg.movie.producer}"/>
+                        <h:outputText value="#{msg['movie.producer']}"/>
                     </f:facet>
                     <h:outputText id="opTxtMovieProducer" value="#{movie.producer}"/>
                 </h:column>
             </h:dataTable>
-            
+
             <br/>
-            <h:commandButton id="cmBtnGoHome" value="#{msg.button.label.home}" action="personList"/>
+            <h:commandButton id="cmBtnGoEdit" value="#{msg['button.label.edit']}" action="#{personCreateBean.editPerson(peopleDetailsBean.person)}"/>
+            <br/>
+            <h:commandButton id="cmBtnGoHome" value="#{msg['button.label.home']}" action="peopleList"/>
         </h:form>
     </h:body>
 </html>

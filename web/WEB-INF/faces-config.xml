@@ -33,14 +33,23 @@
             <to-view-id>/createPerson.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-action>#{peopleDetailsBean.showCustomer(customer)}</from-action>          
+            <from-action>#{peopleDetailsBean.showPeople(person)}</from-action>          
             <from-outcome>show</from-outcome>
             <to-view-id>/personDetails.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-action>#{peopleDetailsBean.showCustomer(customer)}</from-action>          
+            <from-action>#{peopleDetailsBean.showPeople(person)}</from-action>          
             <from-outcome>error</from-outcome>
             <to-view-id>/peopleList.xhtml</to-view-id>
         </navigation-case>
-    </navigation-rule>                        
+    </navigation-rule>  
+    
+    <navigation-rule>
+        <from-view-id>/personDetails.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{personCreateBean.editPerson(peopleDetailsBean.person)}</from-action>          
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/createPerson.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>                                                
 </faces-config>
