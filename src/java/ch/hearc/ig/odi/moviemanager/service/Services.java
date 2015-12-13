@@ -79,7 +79,17 @@ public class Services implements Serializable {
             // Ne devrait pas arriver
         }
     }
-
+    
+    /**
+     * Ajoute une nouvelle personne à la liste
+     * @param number Le numéro unique de la personne
+     * @param fn Le prénom de la personne
+     * @param ln Le nom de la personne
+     * @throws ch.hearc.ig.odi.moviemanager.UniqueException Exception levée si le numéro est déjà utilisé pour une peronnes.
+      */
+    public void savePerson(Long number, String fn, String ln) throws UniqueException{
+        people.put(number, new Person(number, fn, ln));
+    }
     /**
      * Retourne une List contenant toutes les personnes du système. Utile pour
      * l'affichage des personnes dans les facelets
