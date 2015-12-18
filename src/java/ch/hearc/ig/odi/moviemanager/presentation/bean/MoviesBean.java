@@ -1,6 +1,11 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package ch.hearc.ig.odi.moviemanager.presentation.bean;
 
-import ch.hearc.ig.odi.moviemanager.buisness.Person;
+import ch.hearc.ig.odi.moviemanager.buisness.Movie;
 import ch.hearc.ig.odi.moviemanager.service.Services;
 import java.io.Serializable;
 import java.util.List;
@@ -9,25 +14,22 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
- * Bean lié à la page pepoleList.xhtml, qui affiche la liste des personnes
+ *
  * @author DeillonM
  */
-@Named(value = "peopleBean")
+@Named (value = "movieBean")
 @SessionScoped
-public class PeopleBean implements Serializable{
+public class MoviesBean implements Serializable{
     
     //Injection de la classe Services
     @Inject Services services;
     
-    public PeopleBean(){
+    public MoviesBean(){
         
     }
     
-    /**
-     * Retourne une liste de personnes
-     * @return Une liste de personnes
-     */    
-    public List<Person> getPeople(){
-        return services.getPeopleList();
+    public List<Movie> getMovies(){
+        return services.getMoviesList();
     }
+    
 }

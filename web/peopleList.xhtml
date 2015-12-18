@@ -14,7 +14,7 @@
     </h:head>
 
     <h:body>
-        <div></div>
+        <div class="header"></div>
         <div class="contenu">
             <h2>
                 <h:outputText value="#{msg['person.list.title']}"/>
@@ -25,19 +25,25 @@
                         <f:facet name="header">
                             <h:outputText value="#{msg['person.number']}"/>
                         </f:facet>
-                        <h:commandLink id="cmdLnkViewPersonNumber" value="#{person.id}" action="#{peopleDetailsBean.showPeople(person)}"/>
+                        <h:outputText id="opTxtPersonNumber" value="#{person.id}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{msg['person.lastName']}"/>
                         </f:facet>
-                        <h:outputText id="opTxtPersonName" value="#{person.firstName}"/>
+                        <h:commandLink id="cmdLnkViewPersonName" value="#{person.firstName}" action="#{peopleDetailsBean.showPeople(person)}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{msg['person.firstName']}"/>
                         </f:facet>
-                        <h:outputText id="opTxtPersonFN" value="#{person.lastName}"/>
+                        <h:commandLink id="cmdLnkViewPersonFN" value="#{person.lastName}" action="#{peopleDetailsBean.showPeople(person)}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['person.numberMovie']}"/>
+                        </f:facet>
+                        <h:outputText id="opTxtPersonNbrMovie" value="#{person.countMovies()}"/>
                     </h:column>
                 </h:dataTable>
 
@@ -45,6 +51,41 @@
 
                 <h:commandButton id="cmdBtnAddPerson" value="#{msg['button.label.add']}" action="createPerson"/>
             </h:form>
+
+            <br/>
+
+            <!--Liste des films-->
+            <h:form>
+                <h:dataTable var="movie" value="#{movieBean.getMovies()}">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['movie.number']}" />
+                        </f:facet>
+                        <h:outputText id="opTxtMovieName" value="#{movie.id}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['movie.name']}" />
+                        </f:facet>
+                        <h:commandLink value="#{movie.name}" action="#{movieDetailsBean.showMovie(movie)}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['movie.producer']}" />
+                        </f:facet>
+                        <h:outputText id="opTxtMovieProducer" value="#{movie.producer}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['movie.numberPerson']}" />
+                        </f:facet>
+                        <h:outputText id="opTxtMovieNbrPerson" value="#{movie.countPeople()}" />
+                    </h:column>
+                </h:dataTable>
+                <br/>
+                <h:commandButton id="cmdBtnAddMovie" value="#{msg['button.label.add']}" action="createMovie"/>
+            </h:form>    
+            <br/>
         </div>
         <div class="footer">
             <h:outputText value="#{msg['footer']}"/>

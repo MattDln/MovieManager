@@ -47,12 +47,12 @@
     <navigation-rule>
         <from-view-id>/createPerson.xhtml</from-view-id>
         <navigation-case>
-            <from-action>${personCreateBean.savePerson}</from-action>          
+            <from-action>#{personCreateBean.savePerson}</from-action>          
             <from-outcome>success</from-outcome>
             <to-view-id>/createPersonOk.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-action>${personCreateBean.savePerson}</from-action>          
+            <from-action>#{personCreateBean.savePerson}</from-action>          
             <from-outcome>errorDuplicate</from-outcome>
             <to-view-id>/createPerson.xhtml</to-view-id>
         </navigation-case>
@@ -65,5 +65,5 @@
             <from-outcome>edit</from-outcome>
             <to-view-id>/createPerson.xhtml</to-view-id>
         </navigation-case>
-    </navigation-rule>                                                
+    </navigation-rule>                                              
 </faces-config>

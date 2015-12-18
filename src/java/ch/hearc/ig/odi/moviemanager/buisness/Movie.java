@@ -46,6 +46,11 @@ public class Movie {
         return this;
     }
 
+    public int countPeople(){
+        return watchers.size();
+    }
+    
+    
     //Getter et Assesseur
 
     public Long getId() {
@@ -72,4 +77,11 @@ public class Movie {
         this.producer = producer;
     }
 
+    public Map<Long, Person> getWatchers() {
+        return watchers;
+    }
+
+    public void setWatchers(Map<Long, Person> watchers) {
+        this.watchers = watchers;
+    }
 }

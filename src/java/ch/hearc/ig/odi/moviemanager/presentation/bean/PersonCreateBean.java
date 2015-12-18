@@ -9,6 +9,7 @@ import ch.hearc.ig.odi.moviemanager.buisness.Person;
 import ch.hearc.ig.odi.moviemanager.exception.UniqueException;
 import ch.hearc.ig.odi.moviemanager.service.Services;
 import java.io.Serializable;
+import java.util.Objects;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -25,14 +26,14 @@ public class PersonCreateBean implements Serializable {
 
     @Inject
     Services services;
-    private Person person;
+    private Person person =new Person();
 
     public PersonCreateBean() {
 
     }
 
     public String editPerson(Person pers) {
-        person = pers;
+        this.person = pers;
         return "edit";
     }
 
@@ -43,9 +44,6 @@ public class PersonCreateBean implements Serializable {
      * le numéro de la personne est déjà utilisé.
      */
     public String savePerson() {
-        if(person!=null){
-            person = new Person();
-        }
         try {
             services.savePerson(person.getId(), person.getFirstName(), person.getLastName());
             return "success";
@@ -55,6 +53,11 @@ public class PersonCreateBean implements Serializable {
 
     }
 
+        public String updatePerson() {
+            services.updatePerson(person.getId(), person.getFirstName(), person.getLastName());
+            return "success";
+    }
+        
     public Person getPerson() {
         return person;
     }

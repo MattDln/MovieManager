@@ -79,7 +79,7 @@ public class Services implements Serializable {
             // Ne devrait pas arriver
         }
     }
-    
+
     /**
      * Ajoute une nouvelle personne à la liste
      * @param number Le numéro unique de la personne
@@ -88,8 +88,31 @@ public class Services implements Serializable {
      * @throws ch.hearc.ig.odi.moviemanager.UniqueException Exception levée si le numéro est déjà utilisé pour une peronnes.
       */
     public void savePerson(Long number, String fn, String ln) throws UniqueException{
-        people.put(number, new Person(number, fn, ln));
+        if(!people.containsKey(number)){
+            people.put(number, new Person(number, fn, ln));
+        } else {
+            throw new UniqueException("A person with this ID already exist.");
+        }  
     }
+    
+    public void updatePerson(Long number, String fn, String ln){
+        people.put(number, new Person(number, fn, ln)); 
+    }    
+    /**
+     * Ajoute un nouveau film à la liste
+     * @param number Le numéro unique de la personne
+     * @param name Le nom du film
+     * @param producer Le producteur du film
+     * @throws ch.hearc.ig.odi.moviemanager.UniqueException Exception levée si le numéro est déjà utilisé pour un film.
+      */
+    public void saveMovie(Long number, String name, String producer) throws UniqueException{
+        if(!movies.containsKey(number)){
+            movies.put(number, new Movie(number, name, producer));
+        } else {
+            throw new UniqueException("A movie with this ID already exist.");
+        }  
+    }
+    
     /**
      * Retourne une List contenant toutes les personnes du système. Utile pour
      * l'affichage des personnes dans les facelets

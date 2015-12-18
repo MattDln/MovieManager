@@ -56,7 +56,11 @@ public class Person implements Serializable {
 
         return movie;
     }
-
+    
+    public int countMovies(){
+        return moviesWatch.size();
+    }
+    
     //Getter et Assesseur
     public Long getId() {
         return id;
