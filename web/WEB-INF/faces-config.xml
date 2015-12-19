@@ -29,7 +29,7 @@
     <navigation-rule>
         <from-view-id>/peopleList.xhtml</from-view-id>
         <navigation-case>
-            <from-action>#{personCreateBean.editPerson(true, null)</from-action>
+            <from-action>#{personCreateBean.editPerson(true, null)}</from-action>
             <from-outcome>createPerson</from-outcome>
             <to-view-id>/createPerson.xhtml</to-view-id>
         </navigation-case>
@@ -47,6 +47,11 @@
             <from-action>#{movieDetailsBean.showMovie(movie)}</from-action>
             <from-outcome>show</from-outcome>
             <to-view-id>/moviesDetails.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{movieCreateBean.editMovie(true,mov)}</from-action>
+            <from-outcome>createMovie</from-outcome>
+            <to-view-id>/createMovie.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>  
     
@@ -71,5 +76,23 @@
             <from-outcome>edit</from-outcome>
             <to-view-id>/createPerson.xhtml</to-view-id>
         </navigation-case>
-    </navigation-rule>                                              
+    </navigation-rule>   
+    
+    <navigation-rule>
+        <from-view-id>/moviesDetails.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{movieCreateBean.editMovie(false, movieDetailsBean.movie)}</from-action>   
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/createMovie.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/createMovie.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{movieCreateBean.saveMovie}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/createMovieOk.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

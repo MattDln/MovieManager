@@ -23,8 +23,8 @@ import javax.inject.Named;
 @SessionScoped
 public class PersonCreateBean implements Serializable {
 
-    @Inject
-    Services services;
+    //Injection de la classe Services
+    @Inject Services services;
     private Person person;
     private Boolean isUpdate;
 

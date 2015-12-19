@@ -1,55 +1,58 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>#{msg['movie.details.title']}</title>
-    </h:head>
-    <h:body>
-        <h2>
-            <h:outputText value="#{msg['movie.details.title']}"/>
-        </h2>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"     
+      xmlns:f="http://java.sun.com/jsf/core"
+      lang="#{userData.language}">
+    <f:view locale="#{userData.locale}">
+        <h:head>
+            <title>#{msg['movie.details.title']}</title>
+        </h:head>
+        <h:body>
+            <h2>
+                <h:outputText value="#{msg['movie.details.title']}"/>
+            </h2>
 
-        <h:panelGrid border="0" columns="2">
-            <h:outputLabel value="#{msg['movie.number']} :"/>
-            <h:outputText value="#{movieDetailsBean.movie.id}"/>
-            <h:outputLabel value="#{msg['movie.name']} :"/>
-            <h:outputText value="#{movieDetailsBean.movie.name}"/>
-            <h:outputLabel value="#{msg['movie.producer']} :"/>
-            <h:outputText value="#{movieDetailsBean.movie.producer}"/>
-        </h:panelGrid>
+            <h:panelGrid border="0" columns="2">
+                <h:outputLabel value="#{msg['movie.number']} :"/>
+                <h:outputText value="#{movieDetailsBean.movie.id}"/>
+                <h:outputLabel value="#{msg['movie.name']} :"/>
+                <h:outputText value="#{movieDetailsBean.movie.name}"/>
+                <h:outputLabel value="#{msg['movie.producer']} :"/>
+                <h:outputText value="#{movieDetailsBean.movie.producer}"/>
+            </h:panelGrid>
 
-        <h3>
-            <h:outputText value="#{msg['movie.details.person.title']}"/>
-        </h3>
+            <h3>
+                <h:outputText value="#{msg['movie.details.person.title']}"/>
+            </h3>
 
-        <h:form id="personListForm">
-            <h:dataTable id="dtPersonn" var="person" value="#{movieDetailsBean.people}">
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="#{msg['person.number']}"/>
-                    </f:facet>
-                    <h:outputText id="opTxtPersonID" value="#{person.id}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="#{msg['person.lastName']}"/>
-                    </f:facet>
-                    <h:commandLink id="cmdLnkViewPerssonName" value="#{person.lastName}" action="..."/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="#{msg['person.firstName']}"/>
-                    </f:facet>
-                    <h:outputText id="opTxtPersonFN" value="#{person.firstName}"/>
-                </h:column>               
-            </h:dataTable>
+            <h:form id="personListForm">
+                <h:dataTable id="dtPersonn" var="person" value="#{movieDetailsBean.people}">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['person.number']}"/>
+                        </f:facet>
+                        <h:outputText id="opTxtPersonID" value="#{person.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['person.lastName']}"/>
+                        </f:facet>
+                        <h:commandLink id="cmdLnkViewPerssonName" value="#{person.lastName}" action="..."/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['person.firstName']}"/>
+                        </f:facet>
+                        <h:outputText id="opTxtPersonFN" value="#{person.firstName}"/>
+                    </h:column>               
+                </h:dataTable>
 
-            <br/>
-            <h:commandButton id="cmBtnGoEdit" value="#{msg['button.label.edit']}" action="#{personCreateBean.editPerson(false,peopleDetailsBean.person)}"/>
-            <br/>
-            <h:commandButton id="cmBtnGoHome" value="#{msg['button.label.home']}" action="peopleList"/>
-        </h:form>
-    </h:body>
+                <br/>
+                <h:commandButton id="cmBtnGoEdit" value="#{msg['button.label.edit']}" action="#{movieCreateBean.editMovie(false, movieDetailsBean.movie)}"/>
+                <br/>
+                <h:commandButton id="cmBtnGoHome" value="#{msg['button.label.home']}" action="peopleList"/>
+            </h:form>
+        </h:body>
+    </f:view>
 </html>

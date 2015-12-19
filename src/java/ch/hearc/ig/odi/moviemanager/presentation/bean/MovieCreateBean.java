@@ -23,27 +23,41 @@ import javax.inject.Named;
 @SessionScoped
 public class MovieCreateBean implements Serializable{
     
+    //Injection de la classe Services
     @Inject Services services;
-    private Movie movie =new Movie();
+    private Movie movie;
+    private Boolean isUpdate;
     
     public MovieCreateBean(){
         
     }
     
-    public String editMovie(Movie mov){
-        this.movie = mov;
-        return "edit";
-    }
-    
-    public String saveMovie(){
-        try {
-            services.saveMovie(movie.getId(), movie.getName(), movie.getProducer());
-            return "success";
-        } catch (UniqueException Ue) {
-           return "errorDuplicate";
+    public String editMovie(Boolean isCreate,Movie mov){
+        if(isCreate){
+            this.movie=new Movie();
+            isUpdate=false;
+            return "createMovie";
+        }else{
+            this.movie=mov;
+            isUpdate=true;
+            return "edit";
         }
     }
-
+    
+    public String saveMovie() throws UniqueException{
+        if (isUpdate){
+            services.updateMovie(movie.getId(), movie);
+            return "success";
+        }else{
+            services.saveMovie(movie.getId(), movie.getName(), movie.getProducer());
+            return "success";
+        }
+    }
+    
+    public String updateMovie() {
+        services.updateMovie(movie.getId(), movie);
+        return "success";
+    }
     public Movie getMovie() {
         return movie;
     }
@@ -51,4 +65,13 @@ public class MovieCreateBean implements Serializable{
     public void setMovie(Movie movie) {
         this.movie = movie;
     }
+
+    public Boolean getIsUpdate() {
+        return isUpdate;
+    }
+
+    public void setIsUpdate(Boolean isUpdate) {
+        this.isUpdate = isUpdate;
+    }
+
 }

@@ -118,7 +118,14 @@ public class Services implements Serializable {
             throw new UniqueException("A movie with this ID already exist.");
         }  
     }
-    
+
+        public void updateMovie(Long number, Movie mov){
+        for (Movie tmpMovie : movies.values()){
+            if(Objects.equals(tmpMovie.getId(), mov.getId())){
+                tmpMovie=mov;
+            }
+        }
+    }
     /**
      * Retourne une List contenant toutes les personnes du système. Utile pour
      * l'affichage des personnes dans les facelets
