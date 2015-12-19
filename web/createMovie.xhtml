@@ -9,17 +9,17 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:f="http://java.sun.com/jsf/core"
-      lang="#{userData.language}">
-    <f:view locale="#{userData.locale}">
+      lang="#{lanBean.language}">
+    <f:view locale="#{lanBean.locale}">
         <h:head>
-            <title>#{msg['movie.details.title']}</title>
+            <title>#{msg['movie.create.form.title']}</title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         </h:head>
         <h:body>
+            <h2>#{msg['movie.create.form.title']}</h2>
             <h:form id="moviesForm">
                 <c:choose>
                     <c:when test="${not movieCreateBean.isUpdate}">
-                        <h2>#{msg['movie.details.title']}</h2>
                         #{msg['movie.number']} : <h:inputText id="number"
                                        title="Number"
                                        required="true"
@@ -29,7 +29,6 @@ and open the template in the editor.
                         <p></p>
                     </c:when>
                     <c:otherwise>
-                        <h2>#{msg['movie.details.title']}</h2>
                         #{msg['movie.number']} : <h:outputText id="number" value="${movieCreateBean.movie.id}"/>
                         <p></p>                    
                     </c:otherwise>
@@ -49,18 +48,14 @@ and open the template in the editor.
                                maxlength="100"
                                value="${movieCreateBean.movie.producer}"/>
                 <p></p>
-
-
-                <h:commandButton id="reset" value="#{msg['button.label.reset']}" type="reset" /> &nbsp;
-
                 <h:commandButton id="submit" value="#{msg['button.label.submit']}" action="#{movieCreateBean.saveMovie}" />
-
+                <br/>
+                <h:commandButton id="reset" value="#{msg['button.label.reset']}" type="reset" />
+                <br/>
             </h:form>
             <br/>
             <h:form>
-
-                <h:commandButton id="cancel" value="#{msg['button.label.cancel']}" action="peopleList" /> &nbsp;
-
+                <h:commandButton id="cancel" value="#{msg['button.label.cancel']}" action="peopleList" />
             </h:form>
         </h:body>
     </f:view>

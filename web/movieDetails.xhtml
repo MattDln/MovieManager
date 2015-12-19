@@ -3,8 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"     
       xmlns:f="http://java.sun.com/jsf/core"
-      lang="#{userData.language}">
-    <f:view locale="#{userData.locale}">
+      lang="#{lanBean.language}">
+    <f:view locale="#{lanBean.locale}">
         <h:head>
             <title>#{msg['movie.details.title']}</title>
         </h:head>
@@ -12,16 +12,18 @@
             <h2>
                 <h:outputText value="#{msg['movie.details.title']}"/>
             </h2>
-
-            <h:panelGrid border="0" columns="2">
-                <h:outputLabel value="#{msg['movie.number']} :"/>
-                <h:outputText value="#{movieDetailsBean.movie.id}"/>
-                <h:outputLabel value="#{msg['movie.name']} :"/>
-                <h:outputText value="#{movieDetailsBean.movie.name}"/>
-                <h:outputLabel value="#{msg['movie.producer']} :"/>
-                <h:outputText value="#{movieDetailsBean.movie.producer}"/>
-            </h:panelGrid>
-
+            <h:form id="movieForm">
+                <h:panelGrid border="0" columns="2">
+                    <h:outputLabel value="#{msg['movie.number']} :"/>
+                    <h:outputText value="#{movieDetailsBean.movie.id}"/>
+                    <h:outputLabel value="#{msg['movie.name']} :"/>
+                    <h:outputText value="#{movieDetailsBean.movie.name}"/>
+                    <h:outputLabel value="#{msg['movie.producer']} :"/>
+                    <h:outputText value="#{movieDetailsBean.movie.producer}"/>
+                </h:panelGrid>
+                <h:commandButton id="cmBtnGoEditMovie" value="#{msg['button.label.editMovie']}" action="#{movieCreateBean.editMovie(false, movieDetailsBean.movie)}"/>
+                <br/>
+            </h:form>
             <h3>
                 <h:outputText value="#{msg['movie.details.person.title']}"/>
             </h3>
@@ -49,7 +51,7 @@
                 </h:dataTable>
 
                 <br/>
-                <h:commandButton id="cmBtnGoEdit" value="#{msg['button.label.edit']}" action="#{movieCreateBean.editMovie(false, movieDetailsBean.movie)}"/>
+                <h:commandButton id="cmBtnGoEditPeople" value="#{msg['button.label.editPeople']}" action="#{movieCreateBean.editMovie(false, movieDetailsBean.movie)}"/>
                 <br/>
                 <h:commandButton id="cmBtnGoHome" value="#{msg['button.label.home']}" action="peopleList"/>
             </h:form>

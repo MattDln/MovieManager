@@ -9,17 +9,17 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:f="http://java.sun.com/jsf/core"
-      lang="#{userData.language}">
-    <f:view locale="#{userData.locale}">
+      lang="#{lanBean.language}">
+    <f:view locale="#{lanBean.locale}">
         <head>
             <title>#{msg['person.create.form.title']}</title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         </head>
         <h:body>
+            <h2>#{msg['person.create.form.title']}</h2>
             <h:form id="personForm">
                 <c:choose>
                     <c:when test="${not personCreateBean.isUpdate}">
-                        <h2>#{msg['person.create.form.title']}</h2>
                         #{msg['person.number']} : <h:inputText id="number"
                                        title="Number"
                                        required="true"
@@ -29,7 +29,6 @@ and open the template in the editor.
                         <p></p>
                     </c:when>
                     <c:otherwise>
-                        <h2>#{msg['person.create.form.title']}</h2>
                         #{msg['person.number']} : <h:outputText id="number" value="${personCreateBean.person.id}"/>
                         <p></p>                    
                     </c:otherwise>

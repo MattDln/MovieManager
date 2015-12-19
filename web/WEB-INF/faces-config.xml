@@ -7,8 +7,7 @@
     
     <application>
         <locale-config>
-            <default-locale>en</default-locale>
-            <supported-locale>fr</supported-locale>
+            <default-locale>fr</default-locale>
             <supported-locale>en</supported-locale>
         </locale-config>
         <resource-bundle>
@@ -46,7 +45,7 @@
         <navigation-case>
             <from-action>#{movieDetailsBean.showMovie(movie)}</from-action>
             <from-outcome>show</from-outcome>
-            <to-view-id>/moviesDetails.xhtml</to-view-id>
+            <to-view-id>/movieDetails.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-action>#{movieCreateBean.editMovie(true,mov)}</from-action>
@@ -76,10 +75,15 @@
             <from-outcome>edit</from-outcome>
             <to-view-id>/createPerson.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-action>#{personAddMovies.editMovies(pers)}</from-action>
+            <from-outcome>addMovies</from-outcome>
+            <to-view-id>/personAddMovies.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>   
     
     <navigation-rule>
-        <from-view-id>/moviesDetails.xhtml</from-view-id>
+        <from-view-id>/movieDetails.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{movieCreateBean.editMovie(false, movieDetailsBean.movie)}</from-action>   
             <from-outcome>edit</from-outcome>

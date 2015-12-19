@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      lang="#{lanBean.language}">
+    <f:view locale="#{lanBean.locale}">
+        <h:head>
+            <title>#{msg['person.ListMoviesMod.title']}</title>
+        </h:head>
+        <h:body>
+            <h1>#{msg['person.ListMoviesMod.title']}</h1>
+            <h:form>
+                <h2>#{msg['person.ListMoviesWatched']}</h2>
+                <h:column>
+                    <h:selectManyListbox value="#{personAddMovies.person.movies}">
+                        <f:selectItem value="#{personAddMovies.person.movies.values}"/>
+                    </h:selectManyListbox>
+                </h:column>
+            </h:form>
+            <h:form>
+                <h2>#{msg["person.ListMoviesNoWatched"]}</h2>
+                <h:column>
+                    <h:selectManyListbox value="#{personAddMovies.moviesNotWatched}">
+                        <f:selectItems value="#{personAddMovies.moviesNotWatched}" />
+                    </h:selectManyListbox>
+                </h:column>
+                <h:commandButton value="#{msg['personAddMovies.add']}" action="#{personAddMovies.moviesAdd()}" rendered="#{not empty personAddMovies.moviesNotWatched}" />
+            </h:form>    
+        </h:body>
+    </f:view>
+</html>

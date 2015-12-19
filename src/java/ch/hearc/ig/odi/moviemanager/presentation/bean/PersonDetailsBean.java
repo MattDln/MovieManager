@@ -21,13 +21,14 @@ import javax.inject.Named;
  */
 @Named(value = "peopleDetailsBean")
 @SessionScoped
-public class PeopleDetailsBean implements Serializable{
+public class PersonDetailsBean implements Serializable{
     
     //Injection de la classe Services
     @Inject Services services;
+    
     private Person person;
     
-    public PeopleDetailsBean(){
+    public PersonDetailsBean(){
         
     }
     

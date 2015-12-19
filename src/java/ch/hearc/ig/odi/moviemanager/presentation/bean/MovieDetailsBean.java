@@ -25,6 +25,7 @@ public class MovieDetailsBean implements Serializable{
     
     //Injection de la classe Services
     @Inject Services services;
+    
     private Movie movie;
     
     public MovieDetailsBean(){

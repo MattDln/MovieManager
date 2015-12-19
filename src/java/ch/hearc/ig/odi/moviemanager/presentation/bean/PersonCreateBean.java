@@ -25,6 +25,7 @@ public class PersonCreateBean implements Serializable {
 
     //Injection de la classe Services
     @Inject Services services;
+    
     private Person person;
     private Boolean isUpdate;
 
