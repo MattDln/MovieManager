@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import javax.ejb.Stateful;
 import javax.enterprise.context.SessionScoped;
 
@@ -95,9 +96,14 @@ public class Services implements Serializable {
         }  
     }
     
-    public void updatePerson(Long number, String fn, String ln){
-        people.put(number, new Person(number, fn, ln)); 
-    }    
+    public void updatePerson(Long number, Person pers){
+        for (Person tmpPers : people.values()){
+            if(Objects.equals(tmpPers.getId(), pers.getId())){
+                tmpPers=pers;
+            }
+        }
+    }
+    
     /**
      * Ajoute un nouveau film à la liste
      * @param number Le numéro unique de la personne

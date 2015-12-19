@@ -9,8 +9,7 @@ import ch.hearc.ig.odi.moviemanager.buisness.Person;
 import ch.hearc.ig.odi.moviemanager.exception.UniqueException;
 import ch.hearc.ig.odi.moviemanager.service.Services;
 import java.io.Serializable;
-import java.util.Objects;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -21,20 +20,28 @@ import javax.inject.Named;
  * @author DeillonM
  */
 @Named(value = "personCreateBean")
-@RequestScoped
+@SessionScoped
 public class PersonCreateBean implements Serializable {
 
     @Inject
     Services services;
-    private Person person =new Person();
+    private Person person;
+    private Boolean isUpdate;
 
     public PersonCreateBean() {
 
     }
 
-    public String editPerson(Person pers) {
-        this.person = pers;
-        return "edit";
+    public String editPerson(Boolean isCreate, Person pers) {
+        if (isCreate) {
+            this.person = new Person();
+            isUpdate = false;
+            return "createPerson";
+        } else {
+            this.person = pers;
+            isUpdate = true;
+            return "edit";
+        }
     }
 
     /**
@@ -43,26 +50,34 @@ public class PersonCreateBean implements Serializable {
      * @return "success" si l'enregistrement se passe bien, "errorDuplicate" si
      * le numéro de la personne est déjà utilisé.
      */
-    public String savePerson() {
-        try {
+    public String savePerson() throws UniqueException {
+        if (isUpdate) {
+            services.updatePerson(person.getId(), person);
+            return "success";
+        } else {
             services.savePerson(person.getId(), person.getFirstName(), person.getLastName());
             return "success";
-        } catch (UniqueException Ue) {
-            return "errorDuplicate";
         }
-
     }
 
-        public String updatePerson() {
-            services.updatePerson(person.getId(), person.getFirstName(), person.getLastName());
-            return "success";
+    public String updatePerson() {
+        services.updatePerson(person.getId(), person);
+        return "success";
     }
-        
+
     public Person getPerson() {
         return person;
     }
 
     public void setPerson(Person pers) {
         this.person = pers;
+    }
+
+    public Boolean getIsUpdate() {
+        return isUpdate;
+    }
+
+    public void setIsUpdate(Boolean isUpdate) {
+        this.isUpdate = isUpdate;
     }
 }

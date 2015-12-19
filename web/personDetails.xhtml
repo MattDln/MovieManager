@@ -30,13 +30,13 @@
                     <f:facet name="header">
                         <h:outputText value="#{msg['movie.number']}"/>
                     </f:facet>
-                    <h:commandLink id="cmdLnkViewMovieNumber" value="#{movie.id}" action="..."/>
+                    <h:outputText id="opTxtMovieID" value="#{movie.id}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="#{msg['movie.name']}"/>
                     </f:facet>
-                    <h:outputText id="opTxtMovieName" value="#{movie.name}"/>
+                    <h:commandLink id="cmdLnkViewMovieName" value="#{movie.name}" action="..."/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
@@ -47,7 +47,7 @@
             </h:dataTable>
 
             <br/>
-            <h:commandButton id="cmBtnGoEdit" value="#{msg['button.label.edit']}" action="#{personCreateBean.editPerson(peopleDetailsBean.person)}"/>
+            <h:commandButton id="cmBtnGoEdit" value="#{msg['button.label.edit']}" action="#{personCreateBean.editPerson(false,peopleDetailsBean.person)}"/>
             <br/>
             <h:commandButton id="cmBtnGoHome" value="#{msg['button.label.home']}" action="peopleList"/>
         </h:form>

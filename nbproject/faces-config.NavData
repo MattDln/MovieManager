@@ -4,8 +4,8 @@
     <Scope Scope="Project">
         <Node id="createMovie.xhtml" x="650" y="150" zoom="true"/>
         <Node id="moviesDetails.xhtml" x="643" y="382" zoom="true"/>
-        <Node id="createPersonOk.xhtml" x="164" y="519" zoom="true"/>
         <Node id="personDetails.xhtml" x="292" y="293" zoom="true"/>
+        <Node id="createPersonOk.xhtml" x="164" y="519" zoom="true"/>
         <Node id="peopleList.xhtml" x="148" y="193" zoom="true"/>
         <Node id="createPerson.xhtml" x="171" y="407" zoom="true"/>
         <Node id="*.xhtml" x="125" y="32" zoom="true"/>

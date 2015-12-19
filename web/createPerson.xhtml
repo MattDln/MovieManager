@@ -15,10 +15,10 @@ and open the template in the editor.
     <body>
         <h:form>
             <c:choose>
-                <c:when test="${empty personCreateBean.person.id}">
+                <c:when test="${not personCreateBean.isUpdate}">
                     <h2>#{msg['person.create.form.title']}</h2>
                     #{msg['person.number']} : <h:inputText id="number"
-                                   title="#{msg.person.number}"
+                                   title="Number"
                                    required="true"
                                    requiredMessage="#{msg['person.create.error.number.required']}"
                                    maxlength="25"
@@ -47,17 +47,13 @@ and open the template in the editor.
                            maxlength="100"
                            value="${personCreateBean.person.lastName}"/>
             <p></p>
-
-            <h:commandButton id="reset" value="#{msg['button.label.reset']}" type="reset" /> &nbsp;
-
             <h:commandButton id="submit" value="#{msg['button.label.submit']}" action="#{personCreateBean.savePerson}" />
-
+            <br/>
+            <h:commandButton id="reset" value="#{msg['button.label.reset']}" type="reset" />
         </h:form>
         <br/>
         <h:form>
-
             <h:commandButton id="cancel" value="#{msg['button.label.cancel']}" action="peopleList" /> &nbsp;
-
         </h:form>
     </body>
 </html>
