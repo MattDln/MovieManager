@@ -57,6 +57,15 @@ public class Person implements Serializable {
         return movie;
     }
     
+    public Movie removeMovie(Movie movie) throws UniqueException {
+        if (moviesWatch.containsKey(movie.getId())) {
+            this.moviesWatch.remove(movie.getId(), movie.removePerson(this));
+        } else {
+            throw new UniqueException("The movie does not exist in the list.");
+        }
+        return movie;
+    }  
+    
     public int countMovies(){
         return moviesWatch.size();
     }

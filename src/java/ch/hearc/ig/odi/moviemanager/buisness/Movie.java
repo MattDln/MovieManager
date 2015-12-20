@@ -45,7 +45,16 @@ public class Movie {
         }
         return this;
     }
-
+    
+    public Movie removePerson(Person person) throws UniqueException {
+        if (watchers.containsKey(person.getId())) {
+            this.watchers.remove(person.getId(), person);
+        } else {
+            throw new UniqueException("The person does not exist in the list.");
+        }
+        return this;
+    }
+    
     public int countPeople(){
         return watchers.size();
     }

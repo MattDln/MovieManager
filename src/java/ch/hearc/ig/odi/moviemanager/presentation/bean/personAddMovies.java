@@ -7,6 +7,7 @@ package ch.hearc.ig.odi.moviemanager.presentation.bean;
 
 import ch.hearc.ig.odi.moviemanager.buisness.Movie;
 import ch.hearc.ig.odi.moviemanager.buisness.Person;
+import ch.hearc.ig.odi.moviemanager.exception.UniqueException;
 import ch.hearc.ig.odi.moviemanager.service.Services;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -28,6 +29,8 @@ public class personAddMovies implements Serializable {
     Services services;
 
     private Person person;
+    private List<Movie> moviesWatchedAdd;
+    private List<Movie> moviesWatchedRemove;
 
     public personAddMovies() {
 
@@ -38,28 +41,47 @@ public class personAddMovies implements Serializable {
         return "addMovies";
     }
 
-    
-    public List<Movie> getMoviesNotWatched(){
+    public List<Movie> getMoviesNotWatched() {
         List<Movie> moviesNotWatched = services.getMoviesList();
         moviesNotWatched.removeAll(this.person.getMovies().values());
         return moviesNotWatched;
     }
 
-    public List<Movie> converList(List<String> movies){
-        Movie movieTmp;
-        List<Movie> moviList = new ArrayList<>();
-        for (String movieString:movies){
-            movieTmp=services.getMoviesList().get(Integer.parseInt(movieString.split(",")[0]));
-            moviList.add(movieTmp);
+    public String moviesSave() throws UniqueException {
+        for (Movie watch : moviesWatchedAdd) {
+            person.addMovie(watch);
         }
-        return moviList;
+        for (Movie notWatch : moviesWatchedRemove) {
+            person.removeMovie(notWatch);
+        }
+        return "edit";
     }
-    
+
+    public List<Movie> getMovies() {
+        return new ArrayList(person.getMovies().values());
+    }
+
+    public List<Movie> getMoviesWatchedAdd() {
+        return moviesWatchedAdd;
+    }
+
+    public void setMoviesWatchedAdd(List<Movie> moviesWatchedAdd) {
+        this.moviesWatchedAdd = moviesWatchedAdd;
+    }
+
+    public List<Movie> getMoviesWatchedRemove() {
+        return moviesWatchedRemove;
+    }
+
+    public void setMoviesWatchedRemove(List<Movie> moviesWatchedRemove) {
+        this.moviesWatchedRemove = moviesWatchedRemove;
+    }
+
     public Person getPerson() {
         return person;
     }
 
     public void setPerson(Person person) {
         this.person = person;
-    }    
+    }
 }
