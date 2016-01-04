@@ -9,6 +9,8 @@ import ch.hearc.ig.odi.moviemanager.buisness.Person;
 import ch.hearc.ig.odi.moviemanager.exception.UniqueException;
 import ch.hearc.ig.odi.moviemanager.service.Services;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -51,13 +53,17 @@ public class PersonCreateBean implements Serializable {
      * @return "success" si l'enregistrement se passe bien, "errorDuplicate" si
      * le numéro de la personne est déjà utilisé.
      */
-    public String savePerson() throws UniqueException {
+    public String savePerson() {
         if (isUpdate) {
             services.updatePerson(person.getId(), person);
             return "success";
         } else {
-            services.savePerson(person.getId(), person.getFirstName(), person.getLastName());
-            return "success";
+            try {
+                services.savePerson(person.getId(), person.getFirstName(), person.getLastName());
+                return "success";
+            } catch (UniqueException ex) {
+                return "failure";
+            }
         }
     }
 

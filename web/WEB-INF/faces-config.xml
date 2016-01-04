@@ -71,12 +71,12 @@
     <navigation-rule>
         <from-view-id>/personDetails.xhtml</from-view-id>
         <navigation-case>
-            <from-action>edit</from-action>          
+            <from-action>#{personCreateBean.editPerson(false,peopleDetailsBean.person)}</from-action>          
             <from-outcome>edit</from-outcome>
             <to-view-id>/createPerson.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-action>#{personAddMovies.editMovies(peopleDetailsBean.person)}</from-action>
+            <from-action>#{personAddMovies.setPerson(peopleDetailsBean.person)}</from-action>
             <from-outcome>addMovies</from-outcome>
             <to-view-id>/personAddMovies.xhtml</to-view-id>
         </navigation-case>
@@ -107,7 +107,7 @@
             <to-view-id>/personDetails.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>case2</from-outcome>
+            <from-outcome>personDetails</from-outcome>
             <to-view-id>/personDetails.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>

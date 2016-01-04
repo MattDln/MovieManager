@@ -9,22 +9,26 @@
             <title>#{msg['person.ListMoviesMod.title']}</title>
         </h:head>
         <h:body>
-            <h1>#{msg['person.ListMoviesMod.title']}</h1>
-            <h:form>
-                <h2>#{msg['person.ListMoviesWatched']}</h2>
+            <h1>#{msg['person.ListMoviesMod.title']}</h1> 
+            <h:form id="moviesListForm">
+                <h2>#{msg["person.ListMoviesWatched"]}</h2>
+                <h:outputText value="#{msg['person.ListMoviesWatchedEmpty']}" rendered="#{empty personAddMovies.personMovie}" />                
                 <h:column>
-                    <h:selectManyListbox value="#{personAddMovies.moviesWatchedRemove}">
-                        <f:selectItems value="#{personAddMovies.movies}" var="watched" itemLabel="#{watched.name}"/>
+                    <h:selectManyListbox value="#{personAddMovies.moviesWatchedRemove}" rendered="#{not empty personAddMovies.personMovie}" converter="#{movieLovConverter}">
+                        <f:selectItems value="#{personAddMovies.personMovie}" var="movWatch" itemValue="#{movWatch}" itemLabel="#{movWatch.name}"/>
                     </h:selectManyListbox>
                 </h:column>
-                <h2>#{msg["person.ListMoviesNoWatched"]}</h2>
+                <br />
                 <h:column>
-                    <h:selectManyListbox value="#{personAddMovies.moviesWatchedAdd}">
-                        <f:selectItems value="#{personAddMovies.moviesNotWatched}" var="notWatched" itemLabel="#{notWatched.name}"/>
+                    <h:selectManyListbox value="#{personAddMovies.moviesWatchedAdd}" rendered="#{not empty personAddMovies.moviesNotWatched}" converter="#{movieLovConverter}">
+                        <f:selectItems value="#{personAddMovies.moviesNotWatched}" var="movNotWatch" itemValue="#{movNotWatch}" itemLabel="#{movNotWatch.name}"/>
                     </h:selectManyListbox>
                 </h:column>
-                <h:commandButton value="#{msg['button.label.add']}" action="#{personAddMovies.moviesSave}" rendered="#{not empty personAddMovies.moviesNotWatched}" />
-            </h:form>   
+                <br/>
+                <h:column>
+                    <h:commandButton value="#{msg['person.ListMoviesMod.title']}" action="#{personAddMovies.save}"/>
+                </h:column>
+            </h:form>             
             <br />
             <h:form>
                 <h:commandButton id="cmBtnGoHome" value="#{msg['button.label.detail']}" action="personDetails"/>
