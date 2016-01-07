@@ -3,15 +3,17 @@
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
         <Node id="createMovie.xhtml" x="694" y="405" zoom="true"/>
-        <Node id="movieDetails.xhtml" x="755" y="309" zoom="true"/>
-        <Node id="personDetails.xhtml" x="238" y="260" zoom="true"/>
-        <Node id="createPersonOk.xhtml" x="372" y="531" zoom="true"/>
-        <Node id="createMovieOk.xhtml" x="688" y="528" zoom="true"/>
-        <Node id="movieAddPeople.xhtml" x="985" y="408" zoom="true"/>
-        <Node id="createPerson.xhtml" x="381" y="400" zoom="true"/>
+        <Node id="createPersonOk.xhtml" x="374" y="552" zoom="true"/>
+        <Node id="personDetails.xhtml" x="170" y="228" zoom="true"/>
+        <Node id="movieDetails.xhtml" x="923" y="223" zoom="true"/>
+        <Node id="movieAddPeopleOK.xhtml" x="982" y="547" zoom="true"/>
+        <Node id="movieAddPeople.xhtml" x="990" y="403" zoom="true"/>
+        <Node id="createMovieOk.xhtml" x="687" y="552" zoom="true"/>
         <Node id="peopleList.xhtml" x="544" y="216" zoom="true"/>
-        <Node id="*.xhtml" x="125" y="32" zoom="true"/>
-        <Node id="personAddMovies.xhtml" x="107" y="402" zoom="true"/>
+        <Node id="createPerson.xhtml" x="381" y="400" zoom="true"/>
+        <Node id="personAddMoviesOK.xhtml" x="72" y="554" zoom="true"/>
+        <Node id="personAddMovies.xhtml" x="80" y="404" zoom="false"/>
+        <Node id="*.xhtml" x="522" y="17" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

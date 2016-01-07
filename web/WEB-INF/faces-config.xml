@@ -89,6 +89,11 @@
             <from-outcome>edit</from-outcome>
             <to-view-id>/createMovie.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-action>#{movieAddPeople.setMovie(movieDetailsBean.movie)}</from-action>
+            <from-outcome>addPeople</from-outcome>
+            <to-view-id>/movieAddPeople.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     
     <navigation-rule>
@@ -99,16 +104,40 @@
             <to-view-id>/createMovieOk.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    
     <navigation-rule>
         <from-view-id>/personAddMovies.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{personAddMovies.moviesSave}</from-action>
-            <from-outcome>personDetails</from-outcome>
-            <to-view-id>/personDetails.xhtml</to-view-id>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/personAddMoviesOK.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{personAddMovies.moviesSave}</from-action>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/personAddMovies.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-outcome>personDetails</from-outcome>
             <to-view-id>/personDetails.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/movieAddPeople.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{movieAddPeople.peopleSave}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/movieAddPeopleOK.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{movieAddPeople.peopleSave}</from-action>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/movieAddPeople.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>movieDetails</from-outcome>
+            <to-view-id>/movieDetails.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>

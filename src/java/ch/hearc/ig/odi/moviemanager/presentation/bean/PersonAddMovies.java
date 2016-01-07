@@ -12,8 +12,6 @@ import ch.hearc.ig.odi.moviemanager.service.Services;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -24,7 +22,7 @@ import javax.inject.Named;
  */
 @Named(value = "personAddMovies")
 @SessionScoped
-public class personAddMovies implements Serializable {
+public class PersonAddMovies implements Serializable {
 
     //Injection de la classe Services
     @Inject Services services;
@@ -33,7 +31,7 @@ public class personAddMovies implements Serializable {
     private List<Movie> moviesWatchedAdd;
     private List<Movie> moviesWatchedRemove;
 
-    public personAddMovies() {
+    public PersonAddMovies() {
     }
 
     public Person getPerson() {
@@ -81,20 +79,24 @@ public class personAddMovies implements Serializable {
         this.moviesWatchedRemove = moviesWatchedRemove;
     }
     
-    public String Save(){
+    public String moviesSave(){
         for (Movie movRemove : moviesWatchedRemove) {
             try {
                 this.person.removeMovie(movRemove);
             } catch (UniqueException ex) {
+                return "failure";
             }
         }
+
         for (Movie movAdd : moviesWatchedAdd) {
             try {
                 this.person.addMovie(movAdd);
             } catch (UniqueException ex) {
+                return "failure";
             }
+            
         }
-        return "ok";
+        return "success";
 
     }
 

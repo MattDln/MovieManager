@@ -5,10 +5,14 @@
  */
 package ch.hearc.ig.odi.moviemanager.presentation.converter;
 
+import ch.hearc.ig.odi.moviemanager.buisness.Movie;
 import ch.hearc.ig.odi.moviemanager.buisness.Person;
+import ch.hearc.ig.odi.moviemanager.service.Services;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -16,11 +20,24 @@ import javax.inject.Named;
  * @author DeillonM
  */
 @Named (value = "personLovConverter")
+@RequestScoped
 public class PersonLovConverter implements Converter{
-
+    
+    //Injection de la classe Services
+    @Inject Services services;
+    
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(value == null){
+            return null;
+        }else{
+            for (Person pers : services.getPeopleList()) {
+                if (pers.getId() == Integer.parseInt(value)){
+                    return pers;
+                }
+            }
+            return null;
+        }
     }
 
     @Override

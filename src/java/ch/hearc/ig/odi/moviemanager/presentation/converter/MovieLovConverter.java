@@ -7,6 +7,7 @@ package ch.hearc.ig.odi.moviemanager.presentation.converter;
 
 import ch.hearc.ig.odi.moviemanager.buisness.Movie;
 import ch.hearc.ig.odi.moviemanager.service.Services;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -17,7 +18,9 @@ import javax.inject.Named;
  *
  * @author DeillonM
  */
+
 @Named (value = "movieLovConverter")
+@RequestScoped
 public class MovieLovConverter implements Converter{
     
     //Injection de la classe Services
@@ -28,9 +31,8 @@ public class MovieLovConverter implements Converter{
         if(value == null){
             return null;
         }else{
-            int numero = Integer.parseInt(value);
             for (Movie mov : services.getMoviesList()) {
-                if (mov.getId() == numero){
+                if (mov.getId() == Integer.parseInt(value)){
                     return mov;
                 }
             }

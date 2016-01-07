@@ -14,19 +14,21 @@
                 <h2>#{msg["person.ListMoviesWatched"]}</h2>
                 <h:outputText value="#{msg['person.ListMoviesWatchedEmpty']}" rendered="#{empty personAddMovies.personMovie}" />                
                 <h:column>
-                    <h:selectManyListbox value="#{personAddMovies.moviesWatchedRemove}" rendered="#{not empty personAddMovies.personMovie}" converter="#{movieLovConverter}">
+                    <h:selectManyListbox value="#{personAddMovies.moviesWatchedRemove}" rendered="#{not empty personAddMovies.personMovie}">
+                        <f:converter binding="#{movieLovConverter}"/>
                         <f:selectItems value="#{personAddMovies.personMovie}" var="movWatch" itemValue="#{movWatch}" itemLabel="#{movWatch.name}"/>
                     </h:selectManyListbox>
                 </h:column>
                 <br />
                 <h:column>
-                    <h:selectManyListbox value="#{personAddMovies.moviesWatchedAdd}" rendered="#{not empty personAddMovies.moviesNotWatched}" converter="#{movieLovConverter}">
-                        <f:selectItems value="#{personAddMovies.moviesNotWatched}" var="movNotWatch" itemValue="#{movNotWatch}" itemLabel="#{movNotWatch.name}"/>
+                    <h:selectManyListbox value="#{personAddMovies.moviesWatchedAdd}" rendered="#{not empty personAddMovies.moviesNotWatched}">
+                        <f:converter binding="#{movieLovConverter}"/>
+                        <f:selectItems  value="#{personAddMovies.moviesNotWatched}" var="movNotWatch" itemValue="#{movNotWatch}" itemLabel="#{movNotWatch.name}"/>
                     </h:selectManyListbox>
                 </h:column>
-                <br/>
+                <br/>                
                 <h:column>
-                    <h:commandButton value="#{msg['person.ListMoviesMod.title']}" action="#{personAddMovies.save}"/>
+                    <h:commandButton value="#{msg['person.ListMoviesMod.title']}" action="#{personAddMovies.moviesSave}"/>
                 </h:column>
             </h:form>             
             <br />

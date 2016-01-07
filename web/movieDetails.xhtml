@@ -51,7 +51,7 @@
                 </h:dataTable>
 
                 <br/>
-                <h:commandButton id="cmBtnGoEditPeople" value="#{msg['button.label.editPeople']}" action="#{movieCreateBean.editMovie(false, movieDetailsBean.movie)}"/>
+                <h:commandButton id="cmBtnGoEditPeople" value="#{msg['button.label.editPeople']}" action="#{movieAddPeople.setMovie(movieDetailsBean.movie)}"/>
                 <br/>
                 <h:commandButton id="cmBtnGoHome" value="#{msg['button.label.home']}" action="peopleList"/>
             </h:form>

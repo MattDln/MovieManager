@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      lang="#{lanBean.language}">
+    <f:view locale="#{lanBean.locale}">
+        <h:head>
+            <title>#{msg['person.ListMoviesModOk.title']}</title>
+        </h:head>
+        <h:body>
+            
+            <h:form>
+                <h2>#{msg['person.ListMovieModAdd.title']}</h2>
+                <h:outputText value="#{msg['person.ListMovieModAddEmpty']}" rendered="#{empty personAddMovies.moviesWatchedAdd}" />  
+                <h:dataTable var="movieAdd" value="#{personAddMovies.moviesWatchedAdd}" rendered="#{not empty personAddMovies.moviesWatchedAdd}">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['movie.name']}" />
+                        </f:facet>
+                        <h:outputText id="opTxtMovieName" value="#{movieAdd.name}" />
+                    </h:column>                        
+                </h:dataTable>  
+                <h2>#{msg['person.ListMovieModRemove.title']}</h2>
+                <h:outputText value="#{msg['person.ListMovieModRemoveEmpty']}" rendered="#{empty personAddMovies.moviesWatchedRemove}" />
+                <h:dataTable var="movieRemov" value="#{personAddMovies.moviesWatchedRemove}" rendered="#{not empty personAddMovies.moviesWatchedRemove}">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['movie.name']}" />
+                        </f:facet>
+                        <h:outputText id="opTxtMovieName" value="#{movieRemov.name}" />
+                    </h:column>                        
+                </h:dataTable> 
+                <br/>
+                <h:commandButton id="cmBtnGoHome" value="#{msg['button.label.submit']}" action="personDetails"/>
+            </h:form>
+        </h:body>
+    </f:view>
+</html>
